@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-flask-backend
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: leeth-fargate
+  template:
+    metadata:
+      labels:
+        app: leeth-fargate
+    spec:
+      containers:
+        - name: demo-flask-backend
+          image: 576714096343.dkr.ecr.ap-northeast-2.amazonaws.com/demo-flask-backend:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
